@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Boldify</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="script.js"></script>
+  <script>
+    function boldify() {
+      var inputText = document.getElementById("inputText").value;
+      var outputDiv = document.getElementById("output");
+
+      // Make a POST request to the Python Flask server
+      fetch("/boldify", {
+        method: "POST",
+        body: JSON.stringify({ text: inputText }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        outputDiv.innerHTML = data.boldText;
+      });
+    }
+  </script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      const inputField = document.getElementById('inputText');
+      const outputField = document.getElementById('output');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+
+      themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+          body.classList.add('dark-theme');
+          inputField.classList.add('dark-theme');
+          outputField.classList.add('dark-theme');
+        } else {
+          body.classList.remove('dark-theme');
+          inputField.classList.remove('dark-theme');
+          outputField.classList.remove('dark-theme');
+        }
+      });
+
+      menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('show');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <a href="#">Boldify</a>
+    </div>
+    <div class="theme-toggle">
+      <input type="checkbox" id="themeToggle">
+      <label for="themeToggle"></label>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menuToggle">
+      <input type="checkbox">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+  <div class="container">
+    <textarea id="inputText" class="input-field" placeholder="Enter text to boldify"></textarea>
+    <button class="button" onclick="boldify()">Boldify</button>
+    <b></b>
+    <div id="output" class="output-field"></div>
+  </div>
+</body>
+</html>
