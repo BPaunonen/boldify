@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, jsonify
 
 
@@ -15,16 +14,10 @@ def boldify():
     text = request.json.get("text")
     if text is None:
         return jsonify({"error": "No 'text' field provided in JSON payload"})
-    paragraphs = text.split("\n")
+    paragraphs = text.split("\\n")  # Split text into paragraphs
     bold_paragraphs = [boldify_paragraph(paragraph) for paragraph in paragraphs]
-    bold_text = "\n".join(bold_paragraphs)
+    bold_text = "\\n".join(bold_paragraphs)  # Join boldified paragraphs with single newline
     return jsonify({"boldText": bold_text})
-
-def boldify_text(text):
-    paragraphs = text.split("\n")
-    bold_paragraphs = [boldify_paragraph(paragraph) for paragraph in paragraphs]
-    bold_text = "\n".join(bold_paragraphs)
-    return bold_text
 
 def boldify_paragraph(paragraph):
     words = paragraph.split(" ")

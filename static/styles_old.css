@@ -1,33 +1,31 @@
-
 /* General styles */
-
 body {
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   color: #333;
   background-color: #f9f9f9;
-  padding-top: 60px; /* Leave space at the top for the navigation bar */
+  padding-top: 60px;
 }
+.text-container {
+  max-height: 40%; /* Adjust this value as needed */
+  width: 60%; 
+  overflow: auto; 
+  margin: 0 auto;
+}
+
 form {
   margin-bottom: 20px;
 }
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around; /* Distributes empty space evenly between the child elements */
-  align-items: center; /* Centers child elements horizontally */
-  height: 100%; /* Takes up full height of parent */
-  max-height: calc(100vh - 60px); /* Maximum height is the height of the viewport minus the height of the navigation bar */
+  justify-content: space-around; /* Adjust to distribute empty space evenly */
+  align-items: center;
+  height: 100%; /* Adjust to take up full height of parent */
+  max-height: calc(100vh - 60px); /* Adjust to max-height */
   padding: 20px; 
-  overflow: auto; /* Makes the container scrollable if the content exceeds its height */
-}
-
-.text-container {
-  max-height: 40%; /* Maximum height is 40% of the height of the parent container */
-  width: 60%; /* Width is 60% of the width of the parent container */
-  overflow: auto; /* Makes the text container scrollable if the content exceeds its height */
-  margin: 0 auto; /* Centers the text container horizontally within the parent container */
+  overflow: auto; 
 }
 
 .input-field {
@@ -39,23 +37,24 @@ form {
   border-radius: 4px;
   margin-bottom: 20px;
   resize: vertical;
-  min-height: 120px;
-  max-height: 40vh;
+  min-height: 100px;
+  max-height: 90%;
   overflow: auto;
 }
 
 .output-field {
   width: 90%;
   padding: 10px;
+  min-height: 100px;
+  max-height: 90%;
+  overflow: auto;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   border: 2px solid #ccc;
   border-radius: 4px;
   margin-bottom: 20px;
   resize: vertical;
-  min-height: 120px;
-  max-height: 50vh;
-  overflow: auto;
+
 }
 
 .button {
@@ -64,15 +63,12 @@ form {
   color: white;
   font-size: 16px;
   border: none;
-  align-self: center; /* Centers the button vertically within the parent container */
-  margin: 20px auto; /* Centers the button horizontally within the parent container and adds 20px of space above and below it */
+  align-self: center;
+  margin: 20px auto;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-
-
-
 
 .button:hover {
   background-color: #7d9dc2;
@@ -175,6 +171,7 @@ nav {
     z-index: 2;
   }
 }
+
 /* Dark theme styles */
 
 body.dark-theme {
@@ -182,15 +179,20 @@ body.dark-theme {
   color: #fff;
 }
 
-.input-field.dark-theme,
-.output-field.dark-theme {
+.input-field.dark-theme {
   background-color: #282828;
   color: #cfd8dc;
   border-color: #666;
 }
 
+.output-field.dark-theme {
+  background-color: #282828;
+  color: #cfd8dc;
+  border-color: #555;
+}
+
 .output-field.dark-theme b {
-  color: #b9c5ca;
+  color: #b9c5ca; /* Change the color of the bolded letters */
 }
 
 .button.dark-theme {

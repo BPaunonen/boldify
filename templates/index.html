@@ -3,6 +3,8 @@
 <head>
   <title>Boldify</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
   <script src="script.js"></script>
   <script>
     function boldify() {
@@ -19,7 +21,7 @@
       })
       .then(response => response.json())
       .then(data => {
-        outputDiv.innerHTML = data.boldText;
+        outputDiv.innerHTML = data.boldText.replace(/\n/g, "<br>");
       });
     }
   </script>
@@ -72,10 +74,14 @@
     </div>
   </nav>
   <div class="container">
-    <textarea id="inputText" class="input-field" placeholder="Enter text to boldify"></textarea>
+    <div class="text-container">
+      <textarea id="inputText" class="input-field" placeholder="Enter text to boldify"></textarea>
+    </div>
     <button class="button" onclick="boldify()">Boldify</button>
     <b></b>
-    <div id="output" class="output-field"></div>
+    <div class="text-container">
+      <div id="output" class="output-field"></div>
+    </div>
   </div>
 </body>
 </html>
